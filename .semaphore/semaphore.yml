@@ -54,3 +54,6 @@ blocks:
         commands:
           - checkout
           - echo "make docker.push"
+promotions:
+  - name: Production deploy
+    pipeline_file: production-deploy.yml
