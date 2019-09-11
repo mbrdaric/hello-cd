@@ -15,5 +15,6 @@ blocks:
           commands:
             - echo "Hello from Semaphore!"
             - echo $APP_ENV
+            - sleep=40s
             - checkout
             - ls -alh
