@@ -19,6 +19,23 @@ blocks:
             - checkout
             - ls -alh
             - fail
+        - name: 'Job #2'
+          commands:
+            - echo "Hello from Semaphore!"
+            - echo $APP_ENV
+            - sleep=40s
+            - checkout
+            - ls -alh
+  - name: 'Block #2'
+    task:
+      jobs:
+        - name: Filip
+          commands:
+            - echo "Hello from Semaphore!"
+            - echo $APP_ENV
+            - sleep=40s
+            - checkout
+            - ls -alh
 promotions:
   - name: Production deploy
     pipeline_file: production-deploy.yml
