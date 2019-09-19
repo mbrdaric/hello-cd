@@ -44,7 +44,7 @@ promotions:
   - name: on_success
     pipeline_file: production-deploy.yml
     auto_promote_on:
-      - result: failed
+      - result: passed
   - name: on_fail
     pipeline_file: production-deploy.yml
     auto_promote_on:
