@@ -26,6 +26,10 @@ blocks:
             - sleep=40s
             - checkout
             - ls -alh
+      epilogue:
+        always:
+          commands:
+            - '- echo "this command is executed for both passed and failed jobs"'
   - name: 'Block #2'
     task:
       jobs:
