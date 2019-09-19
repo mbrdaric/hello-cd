@@ -18,6 +18,7 @@ blocks:
             - sleep=40s
             - checkout
             - ls -alh
+            - fail
 promotions:
   - name: Production deploy
     pipeline_file: production-deploy.yml
