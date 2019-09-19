@@ -41,7 +41,11 @@ blocks:
             - checkout
             - ls -alh
 promotions:
-  - name: Production deploy
+  - name: on_success
+    pipeline_file: production-deploy.yml
+    auto_promote_on:
+      - result: failed
+  - name: on_fail
     pipeline_file: production-deploy.yml
     auto_promote_on:
       - result: failed
