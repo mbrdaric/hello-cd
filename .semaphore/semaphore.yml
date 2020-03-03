@@ -1,51 +1,13 @@
 version: v1.0
-name: Hello Semaphore
+name: Initial Pipeline
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Simple example
-    task:
-      env_vars:
-        - name: APP_ENV
-          value: prod
-      jobs:
-        - name: Download our code
-          commands:
-            - echo "Hello from Semaphore!"
-            - echo $APP_ENV
-            - sleep=40s
-            - checkout
-            - ls -alh
-            - fail
-        - name: 'Job #2'
-          commands:
-            - echo "Hello from Semaphore!"
-            - echo $APP_ENV
-            - sleep=40s
-            - checkout
-            - ls -alh
-      epilogue:
-        always:
-          commands:
-            - '- echo "this command is executed for both passed and failed jobs"'
-  - name: 'Block #2'
+  - name: 'Block #1'
     task:
       jobs:
-        - name: Filip
+        - name: 'Job #1'
           commands:
-            - echo "Hello from Semaphore!"
-            - echo $APP_ENV
-            - sleep=40s
             - checkout
-            - ls -alh
-promotions:
-  - name: on_success
-    pipeline_file: production-deploy.yml
-    auto_promote_on:
-      - result: passed
-  - name: on_fail
-    pipeline_file: production-deploy.yml
-    auto_promote_on:
-      - result: failed
