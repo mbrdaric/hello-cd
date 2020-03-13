@@ -24,7 +24,6 @@ blocks:
         - name: Rails
           commands:
             - checkout
-            - make rails
           parallelism: 5
   - name: Acceptance tests
     dependencies:
@@ -35,5 +34,5 @@ blocks:
         - name: Cucumber
           commands:
             - checkout
-            - make cucumber
+            - echo
           parallelism: 4
