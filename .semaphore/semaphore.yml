@@ -5,9 +5,36 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: 'Block #1'
+  - name: Install deps
     task:
       jobs:
-        - name: 'Job #1'
+        - name: Bundle
           commands:
             - checkout
+            - make bundle
+    dependencies: []
+  - name: Unit tests
+    dependencies:
+      - Install deps
+    task:
+      agent:
+        machine:
+          type: e1-standard-2
+          os_image: ubuntu1804
+      jobs:
+        - name: Rails
+          commands:
+            - checkout
+            - make rails
+          parallelism: 5
+  - name: Acceptance tests
+    dependencies:
+      - Install deps
+      - Unit tests
+    task:
+      jobs:
+        - name: Cucumber
+          commands:
+            - checkout
+            - make cucumber
+          parallelism: 4
