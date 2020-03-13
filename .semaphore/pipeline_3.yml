@@ -1,0 +1,13 @@
+version: v1.0
+name: Deployment
+blocks:
+  - name: 'Block #1'
+    task:
+      jobs:
+        - name: Production
+          commands:
+            - echo "deployment"
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
